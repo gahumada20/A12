@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="imag/favicon.webp">
+	<title>Solar System</title>
+<style>
+	body {
+		background: linear-gradient(135deg, navy 0%, black 100%);
+		color: white;
+		font-family: Arial, sans-serif;
+	}
+	header {
+		text-align: center;
+		margin-top: 50px;
+	}
+	main {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+	footer {
+		text-align: center;
+		position:fixed;
+		bottom: 20px;
+		width: 100%;
+	}
+	.solar-system-image {
+		display: block;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 300px;
+		height: 180px;
+		border: 0;
+	}
+</style>
+<script>
+  function setCookie(cookieName, cookieValue, expiryDays) {
+    let date = new Date();
+    date.setTime(date.getTime() + (expiryDays * 24 * 60 * 60 * 1000));
+    let expires = "expires=" + date.toUTCString();
+    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cookieName) {
+    let name = cookieName + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let cookieArray = decodedCookie.split(';');
+    for (let i = 0; i < cookieArray.length; i++) {
+      let c = cookieArray[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  function displayFavoritePlanet() {
+    let favoritePlanet = getCookie("favoritePlanet");
+    if (favoritePlanet === "") {
+      favoritePlanet = prompt("What's your favorite planet?");
+      setCookie("favoritePlanet", favoritePlanet, 365);
+    }
+    document.getElementById("favoritePlanetDisplay").innerHTML = "This is your favorite planet: " + favoritePlanet;
+  }
+</script>
+</head>
+<body onload="displayFavoritePlanet()">
+	<header>
+		<h1>Solar System</h1>
+	</header>
+	<main>
+    <p>The Solar System is a collection of celestial objects that orbit around the Sun. It consists of eight planets, several dwarf planets, and numerous moons, asteroids, and comets. The eight planets, in order of their distance from the Sun, are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. Pluto, once considered the ninth planet, was reclassified as a dwarf planet in 2006.</p>
+
+    <p>Our Solar System is located in the Milky Way galaxy, approximately 26,000 light-years away from the galactic center. The planets, along with their moons, orbit the Sun in nearly the same plane, known as the ecliptic. The four inner planets, Mercury, Venus, Earth, and Mars, are known as terrestrial planets because they have solid, rocky surfaces. The outer planets, Jupiter, Saturn, Uranus, and Neptune, are called gas giants, with Jupiter and Saturn being primarily composed of hydrogen and helium, while Uranus and Neptune consist mostly of ices and heavier elements.</p>
+	
+	<p id="favoritePlanetDisplay"></p>
+
+	<img src="imag/solar system.png" width="340" height="180" border="0" class="solar-system-image" alt="solarsystem" />
+ 
+	</main>
+	<footer>
+		&copy; George Ahumada, 2023
+	</footer>
+</body>
+</html>
